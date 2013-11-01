@@ -115,6 +115,26 @@ config = {
             port: '2368'
         }
     }
+
+    // ### Travis
+    // Automated testing run through GitHub
+    'travis-pg': {
+        url: 'http://127.0.0.1:2368',
+        database: {
+            client: 'pg',
+            connection: {
+                host     : '127.0.0.1',
+                user     : 'travis',
+                password : '',
+                database : 'ghost-travis',
+                charset  : 'utf8'
+            }
+        },
+        server: {
+            host: '127.0.0.1',
+            port: '2368'
+        }
+    }
 };
 
 // Export config
