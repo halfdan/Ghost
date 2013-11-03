@@ -106,7 +106,7 @@ config = {
                 host     : '127.0.0.1',
                 user     : 'travis',
                 password : '',
-                database : 'ghost-travis',
+                database : 'ghost_travis',
                 charset  : 'utf8'
             }
         },

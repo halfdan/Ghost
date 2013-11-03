@@ -115,7 +115,7 @@ var path           = require('path'),
                 },
                 test: {
                     options: {
-                        node_env: 'testing'
+                        node_env: process.env.NODE_ENV
                     }
                 }
             },
@@ -862,7 +862,7 @@ var path           = require('path'),
 
         grunt.registerTask('test-functional', 'Run casperjs tests only', ['clean:test', 'setTestEnv', 'express:test', 'spawn-casperjs']);
 
-        grunt.registerTask('validate', 'Run tests and lint code', ['jslint', 'test-unit', 'test-integration', 'test-functional']);
+        grunt.registerTask('validate', 'Run tests and lint code', ['jslint', 'setTestEnv', 'test-unit', 'test-integration', 'test-functional']);
 
 
         // ## Documentation
