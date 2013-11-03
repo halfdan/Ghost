@@ -24,13 +24,9 @@ function insertDefaultFixtures() {
 }
 
 function insertPosts() {
-    var promises = [];
-
-    promises.push(knex('posts').insert(DataGenerator.forKnex.posts));
-    promises.push(knex('tags').insert(DataGenerator.forKnex.tags));
-    promises.push(knex('posts_tags').insert(DataGenerator.forKnex.posts_tags));
-
-    return when.all(promises);
+    return when(knex('posts').insert(DataGenerator.forKnex.posts)
+           .then(knex('tags').insert(DataGenerator.forKnex.tags)
+           .then(knex('posts_tags').insert(DataGenerator.forKnex.posts_tags))));
 }
 
 function insertMorePosts() {
