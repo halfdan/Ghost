@@ -15,12 +15,8 @@ function clearData() {
 }
 
 function insertDefaultFixtures() {
-    var promises = [];
-
-    promises.push(insertDefaultUser());
-    promises.push(insertPosts());
-
-    return when.all(promises);
+    return when(insertDefaultUser()
+           .then(insertPosts()));
 }
 
 function insertPosts() {
@@ -54,15 +50,12 @@ function insertMorePosts() {
 
 function insertDefaultUser() {
     var users = [],
-        userRoles = [],
-        u_promises = [];
+        userRoles = [];
 
     users.push(DataGenerator.forKnex.createUser(DataGenerator.Content.users[0]));
-    u_promises.push(knex('users').insert(users));
     userRoles.push(DataGenerator.forKnex.createUserRole(1, 1));
-    u_promises.push(knex('roles_users').insert(userRoles));
-
-    return when.all(u_promises);
+    return when(knex('users').insert(users))
+           .then(knex('roles_users').insert(userRoles));
 }
 
 module.exports = {
