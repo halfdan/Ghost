@@ -3,7 +3,7 @@
 
 /*global CasperTest, casper, email, user, password */
 
-CasperTest.begin('Ghost setup fails properly', 6, function suite(test) {
+CasperTest.begin('Ghost setup fails properly', 7, function suite(test) {
     casper.thenOpenAndWaitForPageLoad('setup', function then() {
         test.assertUrlMatch(/ghost\/setup\/$/, 'Landed on the correct URL');
     });
@@ -34,6 +34,12 @@ CasperTest.begin('Ghost setup fails properly', 6, function suite(test) {
     }, function onTimeOut() {
         test.fail('Failed to signin');
     }, 20000);
+
+    casper.waitForSelector('.notification-info', function onSuccess() {
+        test.assert(true, 'First run message is present');
+    }, function onTimeout() {
+        test.assert(false, 'No first run notification :(');
+    });
 }, true);
 
 CasperTest.begin('Authenticated user is redirected', 8, function suite(test) {
