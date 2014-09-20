@@ -15,10 +15,8 @@ var supertest     = require('supertest'),
 
 describe('Unauthorized', function () {
     before(function (done) {
-        var app = express();
-
-        ghost({app: app}).then(function () {
-            request = supertest.agent(app);
+        ghost().then(function (ghostServer) {
+            request = supertest.agent(ghostServer.app);
 
             done();
         });

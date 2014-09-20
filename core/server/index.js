@@ -131,7 +131,7 @@ function initNotifications() {
 // Finally it returns an instance of GhostServer
 function init(options) {
     // Get reference to an express app instance.
-    var server = options.app ? options.app : express(),
+    var server = express(),
         adminExpress = express(),
         // create a hash for cache busting assets
         assetHash = (crypto.createHash('md5').update(packageInfo.version + Date.now()).digest('hex')).substring(0, 10);
