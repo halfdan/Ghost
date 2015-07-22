@@ -107,7 +107,7 @@ init = function (tablesOnly) {
 reset = function () {
     var tables = _.map(schemaTables, function (table) {
         return function () {
-            return utils.deleteTable(table);
+            return utils.truncateTable(table);
         };
     }).reverse();
 

@@ -78,6 +78,11 @@ function deleteTable(table) {
     return dbConfig.knex.schema.dropTableIfExists(table);
 }
 
+function truncateTable(table) {
+    dbConfig = dbConfig || config.database;
+    return dbConfig.knex(table).truncate();
+}
+
 function getTables() {
     dbConfig = dbConfig || config.database;
     var client = dbConfig.client;
@@ -124,6 +129,7 @@ module.exports = {
     checkTables: checkTables,
     createTable: createTable,
     deleteTable: deleteTable,
+    truncateTable: truncateTable,
     getTables: getTables,
     getIndexes: getIndexes,
     addUnique: addUnique,
